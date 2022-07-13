@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\PostsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +12,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/{reactRouting}", name="home", defaults={"reactRouting": null})
      */
-    public function index(): Response
+    public function index($reactRouting): Response
     {
         dump($this->getUsers());
         return $this->render('default/index.html.twig');
@@ -64,5 +65,14 @@ class DefaultController extends AbstractController
         $response->setContent(json_encode($users));
         
         return $response;
+    }
+
+     /**
+     * @Route("/api/posts", name="posts")
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function getPosts(PostsRepository $postsRepository)
+    {
+        return $postsRepository->getAllPosts();
     }
 }

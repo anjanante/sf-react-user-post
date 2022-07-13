@@ -1,8 +1,8 @@
 # INSTALL Webpack encore
 
- composer require symfony/webpack-encore-bundle
+composer require symfony/webpack-encore-bundle
 
- yarn install
+yarn install
 
 # INSTALL React
 
